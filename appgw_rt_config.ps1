@@ -157,8 +157,8 @@ az network route-table route-create `
 --resource-group $RgCommonNm `
 --route-table-name $RtSpoke2hub
 $WaPep = az network private-endpoint show `
-    --name "$Wa-pep" `
-    --resource-group $RgCommonNm | ConvertFrom-Json
+--name "$Wa-pep" `
+--resource-group $RgCommonNm | ConvertFrom-Json
 $WaPrivateIp = $WaPep.customDnsConfigs[0].ipAddresses[0]
 az network route-table route create `
   --address-prefix $WaPrivateIp/32 `
