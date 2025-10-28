@@ -45,7 +45,8 @@ $Fa = "$ResourceDefaultNmhyphen-$Id-fa02"
 $WaDiag = "$Wa-diag"
 $FaDiag = "$Fa-diag"
 $AppPlan = "$ResourceDefaultNmhyphen-$Id-asp02"
-$KeyVaultNm = "jprbswakany${Id}-kv2"
+$KeyVaultNm = "jprbswakany${Id}-kv02"
+$SQLSrv = "$ResourceBaseNmhyphen-sql02"
 $SQLDb = "$ResourceBaseNmhyphen-sqldb02"
 $FunctionSANm = "jprbswakany${Id}fs02"
 $AppPlanDiag = "$AppPlan-diag"
@@ -66,6 +67,7 @@ $VNetIntegSubnetid=(az network vnet subnet show `
   --name $SubnetIntegNm `
   --query id `
   --output tsv)
+$workspaceid = (az monitor log-analytics workspace show --resource-group $RgNm --name $LogAnalyticsNm | ConvertFrom-Json).id
 Write-Host "Resource Default Name: $ResourceDefaultNm"
 Write-Host "Resource Group: $RgCommonNm"
 
