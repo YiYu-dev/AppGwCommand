@@ -143,14 +143,14 @@ $rewriteRuleSet = $appGw.RewriteRuleSets | Where-Object { $_.Name -eq $rewriteRu
 $AzPathRuleFa.RewriteRuleSet = $rewriteRuleSet
 Set-AzApplicationGateway -ApplicationGateway $appGw
 az network route-table route-create `
---address-prefix $WaPrivateIp/32
+--address-prefix $WaPrivateIp/32 `
 --name "$resourceDefaultNm-rt-to-$Id-wa02" `
 --next-hop-ip-address 192.168.100.4 `
 --next-hop-type VirtualAppliance `
 --resource-group $RgCommonNm `
 --route-table-name $RtSpoke2hub
 az network route-table route-create `
---address-prefix $FaPrivateIp/32
+--address-prefix $FaPrivateIp/32 `
 --name "$resourceDefaultNm-rt-to-$Id-fa02" `
 --next-hop-ip-address 192.168.100.4 `
 --next-hop-type VirtualAppliance `
