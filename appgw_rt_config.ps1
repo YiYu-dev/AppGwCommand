@@ -42,6 +42,30 @@ $agwFIPConfig = "appGwPublicFrontendIpIPv4-$agwId"
 $agwcertname = (az keyvault certificate list --vault-name $KeyVaultCommonNm |ConvertFrom-Json).name
 $Wa = "$ResourceDefaultNmhyphen-$Id-wa02"
 $Fa = "$ResourceDefaultNmhyphen-$Id-fa02"
+$WaDiag = "$Wa-diag"
+$FaDiag = "$Fa-diag"
+$AppPlan = "$ResourceDefaultNmhyphen-$Id-asp02"
+$KeyVaultNm = "jprbswakany${Id}-kv2"
+$SQLDb = "$ResourceBaseNmhyphen-sqldb02"
+$FunctionSANm = "jprbswakany${Id}fs02"
+$AppPlanDiag = "$AppPlan-diag"
+$KeyVaultNmDiag = "$KeyVaultNm-diag"
+$SQLDbDiag = "$SQLDb-diag"
+$FunctionSADiag = "$FunctionSANm-diag"
+$FunctionSAblobDiag = "$FunctionSANm-blob-diag"
+$FunctionSAqueueDiag = "$FunctionSANm-queue-diag"
+$FunctionSAtableDiag = "$FunctionSANm-table-diag"
+$FunctionSAfileDiag = "$FunctionSANm-file-diag"
+$SubnetNm = "snet-pep"
+$SubnetIntegNm = "snet-vnetiteg"
+$RtSpoke2hub = "$ResourceDefaultNm-rt-spoke2hub"
+$RtVnet2hub = "$ResourceDefaultNm-rt-VnetInteg2hub"
+$VNetIntegSubnetid=(az network vnet subnet show `
+  --resource-group $RgCommonNm `
+  --vnet-name $VNetNm `
+  --name $SubnetIntegNm `
+  --query id `
+  --output tsv)
 $backendPoolwa =  (az network application-gateway address-pool create `
 --resource-group $RgCommonNm `
 --gateway-name $agwNm `
