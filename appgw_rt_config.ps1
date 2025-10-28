@@ -67,6 +67,7 @@ $VNetIntegSubnetid=(az network vnet subnet show `
   --name $SubnetIntegNm `
   --query id `
   --output tsv)
+$LogAnalyticsNm = "$ResourceBaseNmhyphen-log"
 $workspaceid = (az monitor log-analytics workspace show --resource-group $RgNm --name $LogAnalyticsNm | ConvertFrom-Json).id
 Write-Host "Resource Default Name: $ResourceDefaultNm"
 Write-Host "Resource Group: $RgCommonNm"
