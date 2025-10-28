@@ -46,7 +46,7 @@ $backendPoolwa =  (az network application-gateway address-pool create `
 --resouce-group $RgCommonNm `
 --gateway-name $agwNm `
 --name $agwbackendpoolwa `
---servers "$Wa.azurewebsites.net" '
+--servers "$Wa.azurewebsites.net" `
 | ConvertFrom-Json)
 $probewa = (az network application-gateway probe create `
 --g $RgCommonNm `
@@ -90,7 +90,7 @@ $backendPoolwa =  (az network application-gateway address-pool create `
 --resouce-group $RgCommonNm `
 --gateway-name $agwNm `
 --name $agwbackendpoolfa `
---servers "$Fa.azurewebsites.net" '
+--servers "$Fa.azurewebsites.net" `
 | ConvertFrom-Json)
 $probewa = (az network application-gateway probe create `
 --g $RgCommonNm `
