@@ -1,5 +1,3 @@
-az login
-Connect-AzAccount
 $location = "japan east"
 $SubscriptionId = (az account show | convertfrom-json).id
 $tenantId = (az account show | convertfrom-json).tenantId
