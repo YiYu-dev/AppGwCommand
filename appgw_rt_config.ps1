@@ -130,7 +130,7 @@ $PathRuleFa = (az network application-gateway url-path-map rule create `
 --address-pool $agwbackendpoolfa `
 --http-settings $httpSettingfa `
 | ConvertFrom-Json)
-$appGw = Get-ApplicationGateway -Name $agwNm -RgCommonNm
+$appGw = Get-AzApplicationGateway -Name $agwNm -RgCommonNm
 $AzUrlPathMap = appGw.UrlPathMaps | Where-Object { $_.Name -eq $agwRouteRule }
 $AzPathRuleWa = $AzUrlPathMap.PathRules | Where-Object { $_.Name -eq $agwbackendtargetwa }
 $rewriteRuleSetNameWa = "WebAppCommonRules"
