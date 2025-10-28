@@ -43,7 +43,7 @@ $agwcertname = (az keyvault certificate list --vault-name $KeyVaultCommonNm |Con
 $Wa = "$ResourceDefaultNmhyphen-$Id-wa02"
 $Fa = "$ResourceDefaultNmhyphen-$Id-fa02"
 $backendPoolwa =  (az network application-gateway address-pool create `
---resouce-group $RgCommonNm `
+--resource-group $RgCommonNm `
 --gateway-name $agwNm `
 --name $agwbackendpoolwa `
 --servers "$Wa.azurewebsites.net" `
@@ -87,7 +87,7 @@ $PathRuleWa = (az network application-gateway url-path-map rule create `
 --http-settings $httpSettingwa `
 | ConvertFrom-Json)
 $backendPoolwa =  (az network application-gateway address-pool create `
---resouce-group $RgCommonNm `
+--resource-group $RgCommonNm `
 --gateway-name $agwNm `
 --name $agwbackendpoolfa `
 --servers "$Fa.azurewebsites.net" `
@@ -144,14 +144,14 @@ $AzPathRuleFa.RewriteRuleSet = $rewriteRuleSet
 Set-AzApplicationGateway -ApplicationGateway $appGw
 az network route-table route-create `
 --address-prefix $WaPrivateIp/32
--name "$ResouceDefaultNm-rt-to-$Id-wa02" `
+-name "$resourceDefaultNm-rt-to-$Id-wa02" `
 --next-hop-ip-address 192.168.100.4 `
 --next-hop-type VirtualAppliance `
 --resource-group $RgCommonNm `
 --route-table-name $RtSpoke2hub
 az network route-table route-create `
 --address-prefix $FaPrivateIp/32
--name "$ResouceDefaultNm-rt-to-$Id-fa02" `
+-name "$resourceDefaultNm-rt-to-$Id-fa02" `
 --next-hop-ip-address 192.168.100.4 `
 --next-hop-type VirtualAppliance `
 --resource-group $RgCommonNm `
