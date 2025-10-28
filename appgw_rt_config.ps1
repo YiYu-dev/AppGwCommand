@@ -76,7 +76,7 @@ $backendPoolwa =  (az network application-gateway address-pool create `
 --servers "$Wa.azurewebsites.net" `
 | ConvertFrom-Json)
 $probewa = (az network application-gateway probe create `
---g $RgCommonNm `
+-g $RgCommonNm `
 --gateway-name $agwNm `
 -n $agwhealthprobewa `
 --protocol https `
@@ -120,7 +120,7 @@ $backendPoolfa =  (az network application-gateway address-pool create `
 --servers "$Fa.azurewebsites.net" `
 | ConvertFrom-Json)
 $probefa = (az network application-gateway probe create `
---g $RgCommonNm `
+-g $RgCommonNm `
 --gateway-name $agwNm `
 -n $agwhealthprobefa `
 --protocol https `
