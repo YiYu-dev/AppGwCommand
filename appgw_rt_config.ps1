@@ -86,13 +86,13 @@ $PathRuleWa = (az network application-gateway url-path-map rule create `
 --address-pool $agwbackendpoolwa `
 --http-settings $httpSettingwa `
 | ConvertFrom-Json)
-$backendPoolwa =  (az network application-gateway address-pool create `
+$backendPoolfa =  (az network application-gateway address-pool create `
 --resource-group $RgCommonNm `
 --gateway-name $agwNm `
 --name $agwbackendpoolfa `
 --servers "$Fa.azurewebsites.net" `
 | ConvertFrom-Json)
-$probewa = (az network application-gateway probe create `
+$probefa = (az network application-gateway probe create `
 --g $RgCommonNm `
 --gateway-name $agwNm `
 -n $agwhealthprobefa `
@@ -104,7 +104,7 @@ $probewa = (az network application-gateway probe create `
 --threshold 3 `
 --min-servers 0 `
 | ConvertFrom-Json).Id
-$httpSettingwa = (az network application-gateway http-settings create `
+$httpSettingfa = (az network application-gateway http-settings create `
 -g $RgCommonNm `
 --gateway-name $agwNm `
 -n $agwbackendsettingfa `
