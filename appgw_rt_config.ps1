@@ -66,6 +66,8 @@ $VNetIntegSubnetid=(az network vnet subnet show `
   --name $SubnetIntegNm `
   --query id `
   --output tsv)
+Write-Host "Resource Default Name: $ResourceDefaultN"
+Write-Host "Resource Group: $RgCommonNm"
 $backendPoolwa =  (az network application-gateway address-pool create `
 --resource-group $RgCommonNm `
 --gateway-name $agwNm `
