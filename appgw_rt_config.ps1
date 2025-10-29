@@ -168,7 +168,7 @@ $rewriteRuleSet = $appGw.RewriteRuleSets | Where-Object { $_.Name -eq $rewriteRu
 $AzPathRuleWa.RewriteRuleSet = $rewriteRuleSet
 Set-AzApplicationGateway -ApplicationGateway $appGw
 $AzPathRuleFa = $AzUrlPathMap.PathRules | Where-Object { $_.Name -eq $agwbackendtargetfa }
-$rewriteRuleSetNameFa = "FunctionAppCommonRules"
+$rewriteRuleSetNameFa = "FuncAppCommonRules"
 $rewriteRuleSet = $appGw.RewriteRuleSets | Where-Object { $_.Name -eq $rewriteRuleSetNameFa }
 $AzPathRuleFa.RewriteRuleSet = $rewriteRuleSet
 Set-AzApplicationGateway -ApplicationGateway $appGw
