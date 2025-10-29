@@ -172,6 +172,10 @@ $rewriteRuleSetNameFa = "FunctionAppCommonRules"
 $rewriteRuleSet = $appGw.RewriteRuleSets | Where-Object { $_.Name -eq $rewriteRuleSetNameFa }
 $AzPathRuleFa.RewriteRuleSet = $rewriteRuleSet
 Set-AzApplicationGateway -ApplicationGateway $appGw
+$WaPep = az network private-endpoint show `
+--name "$Wa-pep" `
+--resource-group $RgCommonNm | ConvertFrom-Json
+$WaPrivateIp = $WaPep.customDnsConfigs[0].ipAddresses[0]
 az network route-table route create `
 --address-prefix $WaPrivateIp/32 `
 --name "$resourceDefaultNm-rt-to-$Id-wa02" `
@@ -179,6 +183,10 @@ az network route-table route create `
 --next-hop-type VirtualAppliance `
 --resource-group $RgCommonNm `
 --route-table-name $RtSpoke2hub
+$FaPep = az network private-endpoint show `
+    --name "$Fa-pep" `
+    --resource-group $RgCommonNm | ConvertFrom-Json
+$FaPrivateIp = $FaPep.customDnsConfigs[0].ipAddresses[0]
 az network route-table route create `
 --address-prefix $FaPrivateIp/32 `
 --name "$resourceDefaultNm-rt-to-$Id-fa02" `
@@ -186,10 +194,6 @@ az network route-table route create `
 --next-hop-type VirtualAppliance `
 --resource-group $RgCommonNm `
 --route-table-name $RtSpoke2hub
-$WaPep = az network private-endpoint show `
---name "$Wa-pep" `
---resource-group $RgCommonNm | ConvertFrom-Json
-$WaPrivateIp = $WaPep.customDnsConfigs[0].ipAddresses[0]
 az network route-table route create `
   --address-prefix $WaPrivateIp/32 `
   --name "$ResourceDefaultNm-rt-to-$Id-wa02" `
@@ -197,10 +201,6 @@ az network route-table route create `
   --next-hop-type VirtualAppliance `
   --resource-group $RgCommonNm `
   --route-table-name $RtSpoke2hub
-$FaPep = az network private-endpoint show `
-    --name "$Fa-pep" `
-    --resource-group $RgCommonNm | ConvertFrom-Json
-$FaPrivateIp = $FaPep.customDnsConfigs[0].ipAddresses[0]
 az network route-table route create `
   --address-prefix $FaPrivateIp/32 `
   --name "$ResourceDefaultNm-rt-to-$Id-fa02" `
