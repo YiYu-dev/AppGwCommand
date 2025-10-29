@@ -260,12 +260,6 @@ az monitor diagnostic-settings create `
   --logs '[{"categoryGroup":"audit","enabled":true},{"categoryGroup":"allLogs","enabled":true}]' `
   --metrics '[{"category":"AllMetrics","enabled":true}]'
 az monitor diagnostic-settings create `
-  --name $agwNmDiag `
-  --resource $(az network application-gateway show -g $RgCommonNm -n $agwNm --query id -o tsv) `
-  --workspace $workspaceid `
-  --logs '[{"categoryGroup":"allLogs","enabled":true}]' `
-  --metrics '[{"category":"AllMetrics","enabled":true}]'
-az monitor diagnostic-settings create `
   --name $SQLDbDiag `
   --resource $(az sql db show -g $RgNm -n $SQLDb --server $SQLSrv --query id -o tsv) `
   --workspace $workspaceid `
