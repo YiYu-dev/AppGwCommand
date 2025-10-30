@@ -178,7 +178,7 @@ $WaPep = az network private-endpoint show `
 $WaPrivateIp = $WaPep.customDnsConfigs[0].ipAddresses[0]
 az network route-table route create `
 --address-prefix $WaPrivateIp/32 `
---name "$resourceDefaultNm-rt-to-$Id-wa02" `
+--name "$ResourceDefaultNm-rt-to-$Id-wa02" `
 --next-hop-ip-address 192.168.100.4 `
 --next-hop-type VirtualAppliance `
 --resource-group $RgCommonNm `
@@ -189,50 +189,8 @@ $FaPep = az network private-endpoint show `
 $FaPrivateIp = $FaPep.customDnsConfigs[0].ipAddresses[0]
 az network route-table route create `
 --address-prefix $FaPrivateIp/32 `
---name "$resourceDefaultNm-rt-to-$Id-fa02" `
+--name "$ResourceDefaultNm-rt-to-$Id-fa02" `
 --next-hop-ip-address 192.168.100.4 `
 --next-hop-type VirtualAppliance `
 --resource-group $RgCommonNm `
 --route-table-name $RtSpoke2hub
-az network route-table route create `
-  --address-prefix $WaPrivateIp/32 `
-  --name "$ResourceDefaultNm-rt-to-$Id-wa02" `
-  --next-hop-ip-address 192.168.100.4 `
-  --next-hop-type VirtualAppliance `
-  --resource-group $RgCommonNm `
-  --route-table-name $RtSpoke2hub
-az network route-table route create `
-  --address-prefix $FaPrivateIp/32 `
-  --name "$ResourceDefaultNm-rt-to-$Id-fa02" `
-  --next-hop-ip-address 192.168.100.4 `
-  --next-hop-type VirtualAppliance `
-  --resource-group $RgCommonNm `
-  --route-table-name $RtSpoke2hub
-az network vnet subnet update `
-  --resource-group $RgCommonNm `
-  --vnet-name $VNetNm `
-  --name $agwSubnetNm `
-  --route-table $RtSpoke2hub
-az network route-table create `
-  --resource-group $RgCommonNm `
-  --name $RtVnet2hub `
-  --location $location
-az network route-table route create `
-  --address-prefix 172.16.16.0/24 `
-  --name "$ResourceDefaultNm-rt-to-agw$agwId" `
-  --next-hop-ip-address 192.168.100.4 `
-  --next-hop-type VirtualAppliance `
-  --resource-group $RgCommonNm `
-  --route-table-name $RtVnet2hub
-az network route-table route create `
-  --address-prefix 0.0.0.0/0 `
-  --name "$ResourceDefaultNm-rt-toInternet" `
-  --next-hop-ip-address 192.168.100.4 `
-  --next-hop-type VirtualAppliance `
-  --resource-group $RgCommonNm `
-  --route-table-name $RtVnet2hub
-az network vnet subnet update `
-  --resource-group $RgCommonNm `
-  --vnet-name $VNetNm `
-  --name $SubnetIntegNm `
-  --route-table $RtVnet2hub
